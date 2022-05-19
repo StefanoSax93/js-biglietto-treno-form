@@ -21,15 +21,16 @@
                     </div>
                     <div class="col-3 text-center">
                         <h5 class="text-danger mb-4">Km da percorrere</h5>
-                        <input type="text" placeholder="km da percorrere" name="userName" class="border-danger rounded">
+                        <input type="text" placeholder="km da percorrere" name="km" class="border-danger rounded">
                     </div>
                     <div class="col-3 text-center">
                         <h5 class="text-danger mb-4">Fascia d'età</h5>
-                        <select name="" id="" class="border-danger rounded border border-2">
+                        <input type="text" placeholder="Età" name="eta" class="border-danger rounded">
+                        <!-- <select name="" id="" class="border-danger rounded border border-2">
                             <option value="minorenne">Minorenne</option>
                             <option value="maggiorenne">Maggiorenne</option>
                             <option value="over65">Over 65</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <!-- bottoni -->
@@ -39,10 +40,36 @@
                 </div>
             </div>
             <!-- biglietto nascosto -->
-            <div class="mt-4">
+            <div class="mt-4 biglietto-finale">
                 <h1 class="text-center text-white text-uppercase">Il tuo biglietto</h1>
-                <div class="bg-white p-4">
-
+                <div class="bg-white p-3">
+                    <h4 class="text-uppercase">dettaglio passeggeri</h4>
+                    <div class="d-flex my-border">
+                        <div class="bg-secondary p-3 mh-100">
+                            <h3 class="text-uppercase">nome passeggero</h3>
+                            <h5 id="userName"></h5>
+                        </div>
+                        <div class="flex-grow-1 p-3">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="mb-5">Offerta</h5>
+                                    <h6 id="offertType"></h6>
+                                </div>
+                                <div class="col">
+                                    <h5 class="mb-5">Carrozza</h5>
+                                    <h6 id="wagon"></h6>
+                                </div>
+                                <div class="col">
+                                    <h5 class="mb-5">Codice CP</h5>
+                                    <h6 id="cpCode"></h6>
+                                </div>
+                                <div class="col">
+                                    <h5 class="mb-5">Costo Biglietto</h5>
+                                    <h6 id="finalPrice"></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
