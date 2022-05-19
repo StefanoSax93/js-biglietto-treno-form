@@ -1,0 +1,22 @@
+:root {
+    --bs-danger: #B91450;
+    --bs-danger-rgb: 185, 20, 80;
+}
+.section {
+    height: 100vh;
+    background-color: #B91450;
+}
+.box {
+    border-radius: 15px;
+    box-shadow: 3px 3px 20px black;
+}
+.button-style {
+    background-color: #CDC8C3;
+    color: var(--bs-danger);
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 0px 10px;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 5px;
+}
