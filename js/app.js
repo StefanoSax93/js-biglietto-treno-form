@@ -21,6 +21,8 @@ In base alla voce scelta dall’utente, fare i dovuti calcoli*/
 const inputName = document.querySelector("[name='userName']");
 const inputKm = document.querySelector("[name='km']");
 const inputEta = document.querySelector("[name='eta']");
+const prezzoAlKm = 0.21;
+
 // let biglietto = document.querySelector(".biglietto-finale")
 const generateButton = document.getElementById("generateButton");
 const deleteButton = document.getElementById("deleteButton");
@@ -31,44 +33,65 @@ deleteButton.addEventListener("click", function () {
 
 generateButton.addEventListener("click", function () {
 
-    let userName = document.getElementById("userName");
-    // @ts-ignore
-    userName.innerHTML = inputName.value;
+    let quantitaKm = parseInt(inputKm.value);
+    let eta = parseInt(inputEta.value);
+    let datiValidi = true;
+    //controllo i dati inserit
+    if (isNaN(eta) || isNaN(quantitaKm)) {
+        datiValidi = false;
+        alert("Inserisci un numero valido per KM ed età");
+    }
+      // controllo che età sia maggiore di 14
+    if (eta < 10) {
+        datiValidi = false;
+        alert("L'età minima consentita è di 10 anni!");
+    }
+      // controllo che i km non siano superiori a 2000 e minori di 10
+    if (quantitaKm > 2000 || quantitaKm < 10) {
+        datiValidi = false;
+        alert("I Km devono essere compresi tra 10 e 2000");
+    }
+
+    if (datiValidi) {
+        // calcolo prezzo finale
+        let prezzoFinale = quantitaKm * prezzoAlKm;
+        let scontoDaApplicare = 0;
+        // condizioni sconti < 18
+        if (eta < 18) {
+            scontoDaApplicare = 0.2;     
+        } else if (eta > 65) {
+            scontoDaApplicare = 0.4; 
+        }
+        
+        prezzoFinale -= prezzoFinale * scontoDaApplicare;
     
-    const prezzoAlKm = 0.21;
-    // @ts-ignore
-    let quantitaKm = inputKm.value;
-    // @ts-ignore
-    let eta = inputEta.value;
-    let prezzoBiglietto = parseInt(quantitaKm) * prezzoAlKm;
-    let prezzoFinale;
+        let offertType = document.getElementById("offertType")
+        if (parseInt(eta) < 18) {
+            offertType.innerHTML = "Biglietto ridotto minorenni";
+        }else if (parseInt(eta) > 65) {
+            offertType.innerHTML = "Biglietto ridotto over-65";
+        }else {
+            offertType.innerHTML = "Biglietto standard";
+        };
 
-    if (parseInt(eta) < 18) {
-    (prezzoFinale = prezzoBiglietto - (prezzoBiglietto * 20 / 100));
-}   else if (parseInt(eta) > 65) {
-    (prezzoFinale = prezzoBiglietto - (prezzoBiglietto * 40 / 100));
-}   else {
-    (prezzoFinale = prezzoBiglietto);
-};
-    let finalPrice = document.getElementById("finalPrice");
-    finalPrice.innerHTML = `${prezzoFinale.toFixed(2)}€`;
+        let wagon = document.getElementById("wagon");
+    
+        wagon.innerHTML = Math.floor(Math.random() *7) +1;
 
-    let offertType = document.getElementById("offertType")
-    if (parseInt(eta) < 18) {
-        offertType.innerHTML = "Biglietto ridotto minorenni";
-    }   else if (parseInt(eta) > 65) {
-        offertType.innerHTML = "Biglietto ridotto over-65";
-    }   else {
-        offertType.innerHTML = "Biglietto standard";
-    };
-
-    let wagon = document.getElementById("wagon");
-    // @ts-ignore
-    wagon.innerHTML = Math.floor(Math.random() *5) +1;
-
-    let cpCode = document.getElementById("cpCode");
-    // @ts-ignore
-    cpCode.innerHTML = Math.floor(Math.random() *9999) +1;
-})
+        let cpCode = document.getElementById("cpCode");
+    
+        cpCode.innerHTML = Math.floor(Math.random() *9999) +1;
+        const userName = document.getElementById("userName");
+        const finalPrice = document.getElementById("finalPrice");
+        finalPrice.innerHTML = `${prezzoFinale.toFixed(2)}€`;
+        userName.innerHTML = inputName.value;
+        
+        const containerBiglietto = document.querySelector(".biglietto-finale")
+        containerBiglietto.classList.remove("d-none");
+        
+    } else {
+        datiValidi = false;
+    }
+});
 
 
